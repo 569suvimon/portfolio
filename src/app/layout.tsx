@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Serif_Thai, Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
+import { UiProvider, QueryProvider } from "@/components/providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const thaiSans = Noto_Sans_Thai({
+  variable: "--font-thai-sans",
+  subsets: ["thai"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoSerifThai = Noto_Serif_Thai({
+  variable: "--font-noto-serif",
+  subsets: ["thai"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"], // เลือกน้ำหนักที่ต้องการ
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +28,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${thaiSans.variable} ${notoSerifThai.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>
+          <UiProvider>{children}</UiProvider>
+        </QueryProvider>
+      </body>
     </html>
   );
 }
