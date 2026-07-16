@@ -1,54 +1,35 @@
-# ปัญหาหลักของ Sidebar
+# Sidebar Decision Engine
 
-reader ไม่ได้อ้วน อ้วนที่ Decision เวลาเพิ่มเงื่อนไข โค้ดอ่านจัดการยาก
+## Overview
 
-```bash
+The Sidebar Decision Engine separates rendering decisions from UI rendering.
 
-Render
-+
-Decision
-+
-Permission
-+
-Route
-+
-State
-+
-Interaction
+Instead of placing routing, permissions, and state checks inside the Sidebar component, those decisions are centralized in a dedicated hook.
 
-อยู่กองเดียวกัน
-
+```text
+User
+  ↓
+Sidebar
+  ↓
+useSidebarDecision()
+  ↓
+Decision Pipeline
+  ├─ Route
+  ├─ Permission
+  ├─ State
+  └─ Visibility
 ```
 
-# Decision Engine
+## Responsibilities
 
-```bash
+- Determine visible menu items (ตัดสินใจว่าเมนูใดควรแสดง)
+- Check user permissions (ตรวจสอบสิทธิ์ของผู้ใช้งาน)
+- Evaluate current route (วิเคราะห์หน้าปัจจุบัน)
+- Control sidebar state (กำหนดพฤติกรรมของ Sidebar ตามสถานะของระบบ)
 
-                 User Interaction
-                       |
-                       v
+## Benefits
 
-                 Sidebar UI
-                       |
-          +------------+------------+
-          |                         |
-          v                         v
-
- SidebarDecision              Sidebar Action
-
- (อ่าน)                        (เขียน)
-
-          |                         |
-          v                         v
-
-   Render UI                  Store Update
-          |
-          v
-
-   useSidebarDecision()
-          |
-          v
-
-   Decision Pipeline
-
-```
+- Cleaner components
+- Easier to maintain
+- Easier to test
+- Centralized decision logic
