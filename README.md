@@ -1,6 +1,6 @@
 README.md
 
-# Dashboard System
+# Web Application
 
 ## Tech Stack
 
