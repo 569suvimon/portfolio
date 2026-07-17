@@ -1,6 +1,6 @@
 import { AuthResponse } from "@/types/module/auth.type";
 import { useAuthStore } from "@/stores/auth.store";
-import { AuthService } from "@/services";
+import { AuthService } from "@/services/auth.service";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const TENANT_ID = process.env.NEXT_PUBLIC_TENANT_ID || "tester";
