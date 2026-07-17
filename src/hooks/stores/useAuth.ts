@@ -4,7 +4,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAuthStore, } from "@/stores/auth.store";
 import { useLoadingStore } from "@/stores/loading.store";
 import { LoadingKeys } from "@/utils/loadingKeys";
-import { AuthService, ModalService } from "@/services";
+import { ModalService } from "@/services/modal.service";
+import { AuthService } from "@/services/auth.service";
 import { LoginFormData } from "@/types";
 
 
